@@ -149,3 +149,58 @@ barbican-worker                  initial              initial              none
 cluster-host-ip                  initial              initial              none       
 ------------------------------------------------------------------------------
 ```
+
+```sh
+stack@linux-qwyc:~/devstack> sudo zypper -n --no-gpg-checks install sm-client
+The following 47 NEW packages are going to be installed:
+  python2-asn1crypto python2-Babel python2-blinker python2-certifi python2-cffi python2-chardet python2-cryptography python2-cssselect python2-debtcollector python2-ecdsa
+  python2-httplib2 python2-idna python2-iso8601 python2-keystoneauth1 python2-keystoneclient python2-lxml python2-monotonic python2-msgpack python2-ndg-httpsclient
+  python2-netaddr python2-netifaces python2-oauthlib python2-oslo.config python2-oslo.i18n python2-oslo.serialization python2-oslo.utils python2-pbr python2-positional
+  python2-PrettyTable python2-py python2-pyasn1 python2-pycparser python2-PyJWT python2-pykerberos python2-pyOpenSSL python2-PySocks python2-pytz python2-PyYAML
+  python2-requests python2-requests-kerberos python2-rfc3986 python2-stevedore python2-urllib3 python2-wrapt python-enum34 python-funcsigs sm-client
+
+The following 5 recommended packages were automatically selected:
+  python2-cryptography python2-idna python2-ndg-httpsclient python2-pyOpenSSL python2-PySocks
+```
+
+```sh
+stack@linux-qwyc:~/devstack> smc
+usage: smc [--version] [--debug] [-v] [-k] [--cert-file CERT_FILE]
+```
+
+```sh
+stack@linux-qwyc:~/devstack> sudo zypper -n --no-gpg-checks install sm-api
+Loading repository data...
+Reading installed packages...
+Resolving package dependencies...
+
+Problem: nothing provides libamon1 needed by sm-api-1.0.0-lp151.3.1.x86_64
+ Solution 1: do not install sm-api-1.0.0-lp151.3.1.x86_64
+ Solution 2: break sm-api-1.0.0-lp151.3.1.x86_64 by ignoring some of its dependencies
+```
+
+```sh
+$ export OS_USERNAME=admin
+$ export OS_PASSWORD=user
+$ export OS_AUTH_URL=http://10.0.2.15/identity/v3
+$ smc service-list
+```
+
+```sh
+$ source openrc
+$ nova flavor-list
+$ smc service-list
+```
+
+## Errors To Look At
+
+```sh
+stack@linux-qwyc:~/devstack> sm
+ERROR: : sm_db_nodes.c(153): Failed to read, sql=SELECT * FROM NODES WHERE name <> 'linux-qwyc';, rc=21, error=(null).
+ERROR: : sm_failover_ss.c(77): Failed to get peername, error=FAILED.
+Trap thread (1095) created.
+Failed to open scheduler log file (/var/log/sm-scheduler.log).
+Failed to start debug thread, error=FAILED.
+Debug initialization failed, error=FAILED.
+```
+
