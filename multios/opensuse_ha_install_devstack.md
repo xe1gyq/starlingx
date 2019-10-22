@@ -1,6 +1,6 @@
 # DevStack
 
-1. Create Ubuntu 18.04 based virtual machine:
+1. Create [openSUSE Leap](https://software.opensuse.org/distributions/leap) based virtual machine:
    - 2 CPUs / 24 GB RAM / 64 GB SSD Disk
 2. Install [DevStack](https://docs.openstack.org/devstack/latest) without Plugins
    - Review [plugins list](https://docs.openstack.org/devstack/latest/plugin-registry.html)
