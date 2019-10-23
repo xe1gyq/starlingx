@@ -68,8 +68,25 @@ ToDo: Add above rpms as a runtime dependencies
 
 ### Include libraries
 
+Error with build_sm
+
+```
+# This works for Zuul jobs using OpenStack's DevStack roles
+plugin_requires ha metal
+plugin_requires ha config
+```
+
 ```sh
 sm_cluster_hbs_info_msg.h:11:10: fatal error: mtceHbsCluster.h: No such file or directory
  #include "mtceHbsCluster.h"
           ^~~~~~~~~~~~~~~~~~
+```
+
+Error with build_sm_api
+
+```sh
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:63  pushd /opt/stack/devstack/ha/service-mgmt-api/sm-api
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:65  python setup.py build
+package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:67  popd
 ```
