@@ -1,5 +1,7 @@
 # openSUSE HA Install DevStack
 
+## sm
+
 How about looking how devstack initialize services and execute in the order and with the arguments?
 
 ```
@@ -14,13 +16,14 @@ stack@linux-qwyc:~/devstack/ha> sudo vi /etc/init.d/sm
 #. /etc/init.d/functions
 ```
 
+Start service
+
 ```sh
 stack@linux-qwyc:~/devstack/ha> /etc/init.d/sm start
 /etc/init.d/sm: line 52: /usr/bin/facter: No such file or directory
 Starting sm: /etc/init.d/sm: line 63: start-stop-daemon: command not found
 FAIL
 ```
-- ToDo: as facter as runtime dependency
 
 ```sh
 stack@linux-qwyc:~/devstack/ha> vi devstack/files/debs/ha
@@ -36,4 +39,37 @@ devstack/files/debs/ha:facter
 service-mgmt/sm/scripts/sm:        if [ "`/usr/bin/facter is_virtual`" = "true" ]
 stx-ocf-scripts/src/ocf/dbmon:    # "facter" will return "true" or "false" 
 stx-ocf-scripts/src/ocf/dbmon:    eval $(FACTERLIB=/usr/share/puppet/modules/platform/lib/facter/ facter is_controller_active)
+```
+
+ToDo: Add facter as a runtime dependency
+
+## DevStack Build
+
+### Runtime dependencies
+
+```sh
+stack@linux-qwyc:~/devstack/ha/devstack> ./build.sh 
+sm_types.c:10:10: fatal error: glib.h: No such file or directory
+ #include <glib.h>
+          ^~~~~~~~
+compilation terminated.
+sm_uuid.c:9:10: fatal error: uuid/uuid.h: No such file or directory
+ #include <uuid/uuid.h>
+          ^~~~~~~~~~~~~
+/usr/lib64/gcc/x86_64-suse-linux/7/../../../../x86_64-suse-linux/bin/ld: cannot find -lsqlite3
+collect2: error: ld returned 1 exit status
+```
+
+```sh
+stack@linux-qwyc:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel
+```
+
+ToDo: Add above rpms as a runtime dependencies
+
+### Include libraries
+
+```sh
+sm_cluster_hbs_info_msg.h:11:10: fatal error: mtceHbsCluster.h: No such file or directory
+ #include "mtceHbsCluster.h"
+          ^~~~~~~~~~~~~~~~~~
 ```
