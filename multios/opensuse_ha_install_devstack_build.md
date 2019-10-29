@@ -1,6 +1,8 @@
 # openSUSE HA Install DevStack Build
 
-### Runtime dependencies
+## Runtime dependencies
+
+- https://review.opendev.org/#/c/691905
 
 ```sh
 stack@linux-qwyc:~/devstack/ha/devstack> ./build.sh 
@@ -19,20 +21,20 @@ collect2: error: ld returned 1 exit status
 ```
 
 ```sh
-stack@linux-qwyc:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel jsoncpp-devel
+stack@linux-qwyc:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
 
-ToDo: Add above rpms as a runtime dependencies
+## Includes libraries
 
-### Include libraries
+> Errors with build_sm anb build_sm_api
 
-Error with build_sm
-
-```
+```sh
 # This works for Zuul jobs using OpenStack's DevStack roles
 plugin_requires ha metal
 plugin_requires ha config
 ```
+
+Error mtceHbsCluster.h
 
 ```sh
 sm_cluster_hbs_info_msg.h:11:10: fatal error: mtceHbsCluster.h: No such file or directory
@@ -40,13 +42,13 @@ sm_cluster_hbs_info_msg.h:11:10: fatal error: mtceHbsCluster.h: No such file or 
           ^~~~~~~~~~~~~~~~~~
 ```
 
-```patch
+```sh
 stack@linux-qwyc:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/metal.git
 stack@linux-qwyc:~/devstack/ha/devstack> find . -name mtceHbsCluster.h
 ./metal/mtce/src/heartbeat/mtceHbsCluster.h
 ```
 
-```sh
+```patch
 diff --git a/devstack/lib/ha b/devstack/lib/ha
 index 12ee724..c6adcfc 100644
 --- a/devstack/lib/ha
@@ -61,12 +63,22 @@ index 12ee724..c6adcfc 100644
          build
 ```
 
+Error fmAPI.h
+
 ```sh
 In file included from sm_log_thread.c:23:0:
 fm_api_wrapper.h:10:10: fatal error: fmAPI.h: No such file or directory
  #include <fmAPI.h>
           ^~~~~~~~~
 ```
+
+```sh
+stack@linux-qwyc:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
+stack@linux-qwyc:~/devstack/ha/devstack> find . -name fmAPI.h
+./fault/fm-common/sources/fmAPI.h
+```
+
+Final Patch
 
 ```patch
 diff --git a/devstack/lib/ha b/devstack/lib/ha
@@ -82,29 +94,12 @@ index 12ee724..f9d9786 100644
          LDLIBS="-L $STX_HA_DIR/service-mgmt/sm-common/src -L $STX_HA_DIR/service-mgmt/sm-db/src  -lsqlite3 -lglib-2.0 -luuid -lpthread -lrt -lsm_common -lsm_db -lfmcommon -ljson-c -lcrypto -lssl" \
          build
  
-diff --git a/service-mgmt/sm/Makefile b/service-mgmt/sm/Makefile
-index b1ba351..e232cb7 100644
---- a/service-mgmt/sm/Makefile
-+++ b/service-mgmt/sm/Makefile
-@@ -4,7 +4,7 @@
- # SPDX-License-Identifier: Apache-2.0
- #
- build:
--       @(cd src; make build )
-+       @(cd src; make build)
- 
- install:
-        @(cd src; make $@)
 diff --git a/service-mgmt/sm/src/Makefile b/service-mgmt/sm/src/Makefile
-index 171c292..1520a09 100644
+index 171c292..132ffa6 100644
 --- a/service-mgmt/sm/src/Makefile
 +++ b/service-mgmt/sm/src/Makefile
-@@ -120,10 +120,10 @@ SRCS+=sm_cluster_hbs_info_msg.cpp
- SRCS+=sm_configure.cpp
- 
- OBJS= $(SRCS:.c=.o)
--CCFLAGS= -g -O2 -Wall -Werror -Wformat  -std=c++11
-+CCFLAGS= -g -O2 -Wall -Werror -Wformat  -std=c++11 
+@@ -123,7 +123,7 @@ OBJS= $(SRCS:.c=.o)
+ CCFLAGS= -g -O2 -Wall -Werror -Wformat  -std=c++11
  EXTRACCFLAGS= -D__STDC_FORMAT_MACROS -Wformat -Wformat-security
  LDLIBS= -lsqlite3 -lglib-2.0 -luuid -lpthread -lrt -lsm_common -lsm_db -lfmcommon -ljson-c -lcrypto -lssl
 -LDFLAGS = -rdynamic
@@ -112,8 +107,22 @@ index 171c292..1520a09 100644
  
  .c.o:
         $(CXX) $(INCLUDES) $(CCFLAGS) $(EXTRACCFLAGS) -c $< -o $@
+```
+
+Error fmcommon
+
+```sh
+stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devstack/ha/devstack/fault/fm-common/sources/libfmcommon.so /usr/lib64/
+stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devstack/ha/devstack/fault/fm-common/sources/libfmcommon.so /usr/lib64/fmcommon.so
+```
+
+Build Successful
 
 ```
+stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> bash build.sh 
+```
+
+## Sandbox
 
 ```sh
 zypper se -s libjson
@@ -129,23 +138,6 @@ rpm -qlp /var/cache/zypp/packages/home_xe1gyq/x86_64/sm-common-1.0.0-lp151.2.2.x
 find /var/cache/zypp -iname "libamon1*rpm"
 rpm -qlp /var/cache/zypp/packages/Cloud_StarlingX_2.0/x86_64/libamon1-1.0-lp150.10.1.x86_64.rpm 
 sudo zypper install sm-common
-```
-
-```sh
-stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devstack/ha/devstack/fault/fm-common/sources/libfmcommon.so /usr/lib64/
-stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devstack/ha/devstack/fault/fm-common/sources/libfmcommon.so /usr/lib64/fmcommon.so
-```
-
-```
-stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> bash build.sh 
-```
-
-### Trash For Now
-
-```sh
-stack@linux-qwyc:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
-stack@linux-qwyc:~/devstack/ha/devstack> find . -name fmAPI.h
-./fault/fm-common/sources/fmAPI.h
 ```
 
 ```sh
