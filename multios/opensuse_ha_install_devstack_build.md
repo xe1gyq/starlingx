@@ -119,7 +119,7 @@ stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devst
 Build Successful
 
 ```
-stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> bash build.sh 
+stack@linux-qwyc:~/devstack/ha/devstack> bash build.sh 
 ```
 
 ## Sandbox
