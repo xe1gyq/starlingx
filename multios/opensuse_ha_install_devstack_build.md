@@ -13,6 +13,9 @@ sm_uuid.c:9:10: fatal error: uuid/uuid.h: No such file or directory
           ^~~~~~~~~~~~~
 /usr/lib64/gcc/x86_64-suse-linux/7/../../../../x86_64-suse-linux/bin/ld: cannot find -lsqlite3
 collect2: error: ld returned 1 exit status
+
+/usr/lib64/gcc/x86_64-suse-linux/7/../../../../x86_64-suse-linux/bin/ld: cannot find -ljson-c
+collect2: error: ld returned 1 exit status
 ```
 
 ```sh
