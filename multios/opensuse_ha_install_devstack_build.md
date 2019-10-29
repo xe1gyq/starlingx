@@ -1,5 +1,11 @@
 # openSUSE HA Install DevStack Build
 
+Build command
+
+```
+stack@linux-qwyc:~/devstack/ha/devstack> bash build.sh 
+```
+
 ## Runtime dependencies
 
 - https://review.opendev.org/#/c/691905
@@ -110,6 +116,12 @@ index 171c292..132ffa6 100644
 ```
 
 Error fmcommon
+
+```sh
+g++ -o fmManager fm_main.o  -lfmcommon -lrt -lpthread -luuid
+/usr/lib64/gcc/x86_64-suse-linux/7/../../../../x86_64-suse-linux/bin/ld: cannot find -lfmcommon
+collect2: error: ld returned 1 exit status
+```
 
 ```sh
 stack@linux-qwyc:~/devstack/ha/devstack/fault/devstack> sudo cp /opt/stack/devstack/ha/devstack/fault/fm-common/sources/libfmcommon.so /usr/lib64/
