@@ -4,7 +4,6 @@
 
 This is the state of Service Manager after StarlingX ISO has been installed:
 
-
 ```sh
 localhost:~$ rpm -qa | grep "sm-"
 sm-eru-1.0.0-20.tis.x86_64
@@ -673,3 +672,33 @@ sm-watchdog is running
 ```
 
 ## Step Two
+
+Source Code
+
+```sh
+[user@22b9459ea3f6 starlingx]$ repo grep SmPuppet
+cgcs-root/stx/config/sysinv/sysinv/sysinv/setup.cfg:    031_smapi = sysinv.puppet.smapi:SmPuppet
+cgcs-root/stx/config/sysinv/sysinv/sysinv/sysinv/puppet/smapi.py:class SmPuppet(openstack.OpenstackBasePuppet):
+```
+
+```sh
+systemconfig.puppet_plugins = 
+    031_smapi = sysinv.puppet.smapi:SmPuppet
+```
+
+```sh
+A single instance of :py:class:`sysinv.conductor.manager.ConductorManager` is
+created within the *sysinv-conductor* process, and is responsible for
+performing all actions for hosts managed by system inventory.
+Commands are received via RPC calls. The conductor service also performs
+collection of inventory data for each host.
+
+cgcs-root/stx/config/sysinv/sysinv/sysinv/sysinv/
+cgcs-root/stx/metal/inventory/inventory/inventory/
+```
+
+## Step Three
+
+```sh
+
+```
