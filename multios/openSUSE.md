@@ -65,5 +65,7 @@ index 171c292..c11e881 100644
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> cd fault/fm-common/sources/
+stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> make
 stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> sudo cp libfmcommon.so /usr/lib64/
+stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> cd -
 ```
