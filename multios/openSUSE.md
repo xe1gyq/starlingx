@@ -15,7 +15,7 @@ LOGFILE=$DEST/logs/stack.sh.log
 HOST_IP=127.0.0.1
 ```
 
-## Build ha
+## Build
 
 ```sh
 stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
@@ -83,7 +83,7 @@ running build_py
 package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
 ```
 
-## Install
+## Install install_ha
 
 Missing for all systemd files:
 
@@ -189,6 +189,34 @@ install sm.db /var/lib/sm
 install -m 644 sm-patch.sql /var/lib/sm/patches
 +opt/stack/devstack/ha/devstack/lib/ha:install_sm_db:387  popd
 ~/devstack/ha/devstack
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
+/var/run/sm/sm.db not available.
+```
+
+- https://opendev.org/starlingx/ha/src/branch/master/service-mgmt/sm-db/opensuse/libsm_db1.spec
+
+```sh
+%dir %{_sharedstatedir}/sm/patches
+%{_libdir}/libsm_db.so.1
+%{_libdir}/libsm_db.so.1.0.0
+%config(noreplace) %{_sharedstatedir}/sm/sm.hb.db
+%config(noreplace) %{_sharedstatedir}/sm/sm.db
+%{_sharedstatedir}/sm/patches/sm-patch.sql
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo cp -r /var/lib/sm/ /var/run
+```
+
+ToDo Do we need a change in openSUSE specfile?
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
+-Service_Groups------------------------------------------------------------------------
+-Services------------------------------------------------------------------------------
 ```
 
 ### install_sm
@@ -651,3 +679,11 @@ Installing sm-api script to /usr/bin
 +opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:300  popd
 ~/devstack/ha/devstack
 ```
+
+## Init init_ha
+
+> Tbd
+
+## Configure configure_ha
+
+> Tbd
