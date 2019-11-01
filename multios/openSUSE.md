@@ -1,5 +1,7 @@
 # openSUSE
 
+- [Option 01](https://github.com/lorin/devstack-vm/blob/master/devstack.yml)
+
 ## DevStack Installation
 
 ```sh
