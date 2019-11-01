@@ -236,3 +236,380 @@ stack@linux-0ibz:~/devstack/ha/devstack> echo $?
 +opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:304  setup_install /opt/stack/devstack/ha/service-mgmt-client/sm-client
 /opt/stack/devstack/ha/devstack/lib/ha: line 304: setup_install: command not found
 ```
+
+```sh
+function install_sm_client {
+    #setup_install $STX_HA_DIR/service-mgmt-client/sm-client
+    $STX_SUDO install -m 755 ${GITDIR[$STX_HA_NAME]}/service-mgmt-client/sm-client/usr/bin/smc $STX_BIN_DIR
+}
+```
+
+```sh
++build.sh:main:45                          install_sm_client
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:305  sudo install -m 755 /opt/stack/devstack/ha/service-mgmt-client/sm-client/usr/bin/smc /usr/local/bin
+```
+
+### install_sm_tools
+
+```sh
++build.sh:main:46                          install_sm_tools
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_tools:391  pushd /opt/stack/devstack/ha/service-mgmt-tools/sm-tools
+~/devstack/ha/service-mgmt-tools/sm-tools ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_tools:393  sudo python setup.py install --root=/ --install-lib=/usr/lib/python2.7/site-packages --prefix=/usr --install-data=/usr/share
+running install
+running build
+running build_py
+creating build
+creating build/lib
+creating build/lib/sm_tools
+copying sm_tools/__init__.py -> build/lib/sm_tools
+copying sm_tools/sm_action.py -> build/lib/sm_tools
+copying sm_tools/sm_api_msg_utils.py -> build/lib/sm_tools
+copying sm_tools/sm_configure.py -> build/lib/sm_tools
+copying sm_tools/sm_dump.py -> build/lib/sm_tools
+copying sm_tools/sm_provision.py -> build/lib/sm_tools
+copying sm_tools/sm_query.py -> build/lib/sm_tools
+running install_lib
+creating /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/__init__.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_action.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_api_msg_utils.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_configure.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_dump.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_provision.py -> /usr/lib/python2.7/site-packages/sm_tools
+copying build/lib/sm_tools/sm_query.py -> /usr/lib/python2.7/site-packages/sm_tools
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_action.py to sm_action.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_api_msg_utils.py to sm_api_msg_utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_configure.py to sm_configure.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_dump.py to sm_dump.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_provision.py to sm_provision.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_tools/sm_query.py to sm_query.pyc
+running install_egg_info
+running egg_info
+creating sm_tools.egg-info
+writing sm_tools.egg-info/PKG-INFO
+writing top-level names to sm_tools.egg-info/top_level.txt
+writing dependency_links to sm_tools.egg-info/dependency_links.txt
+writing entry points to sm_tools.egg-info/entry_points.txt
+writing manifest file 'sm_tools.egg-info/SOURCES.txt'
+reading manifest file 'sm_tools.egg-info/SOURCES.txt'
+writing manifest file 'sm_tools.egg-info/SOURCES.txt'
+Copying sm_tools.egg-info to /usr/lib/python2.7/site-packages/sm_tools-1.0.0-py2.7.egg-info
+running install_scripts
+Installing sm-dump script to /usr/bin
+Installing sm-query script to /usr/bin
+Installing sm-restart script to /usr/bin
+Installing sm-unmanage script to /usr/bin
+Installing sm-iface-state script to /usr/bin
+Installing sm-provision script to /usr/bin
+Installing sm-configure script to /usr/bin
+Installing sm-manage script to /usr/bin
+Installing sm-restart-safe script to /usr/bin
+Installing sm-deprovision script to /usr/bin
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_tools:399  popd
+~/devstack/ha/devstack
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
+/var/run/sm/sm.db not available.
+```
+
+### install_sm_api
+
+```sh
++build.sh:main:47                          install_sm_api
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:282  pushd /opt/stack/devstack/ha/service-mgmt-api/sm-api
+~/devstack/ha/service-mgmt-api/sm-api ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:284  build_sm_api
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:63  pushd /opt/stack/devstack/ha/service-mgmt-api/sm-api
+~/devstack/ha/service-mgmt-api/sm-api ~/devstack/ha/service-mgmt-api/sm-api ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:65  python setup.py build
+running build
+running build_py
+package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_api:67  popd
+~/devstack/ha/service-mgmt-api/sm-api ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:287  sudo python setup.py install --root=/ --install-lib=/usr/lib/python2.7/site-packages --prefix=/usr --install-data=/usr/share
+running install
+running build
+running build_py
+package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
+running install_lib
+creating /usr/lib/python2.7/site-packages/sm_api
+copying build/lib/sm_api/__init__.py -> /usr/lib/python2.7/site-packages/sm_api
+creating /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/config.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/context.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/exception.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/log.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/policy.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/safe_utils.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/service.py -> /usr/lib/python2.7/site-packages/sm_api/common
+copying build/lib/sm_api/common/utils.py -> /usr/lib/python2.7/site-packages/sm_api/common
+creating /usr/lib/python2.7/site-packages/sm_api/db
+copying build/lib/sm_api/db/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/db
+copying build/lib/sm_api/db/api.py -> /usr/lib/python2.7/site-packages/sm_api/db
+copying build/lib/sm_api/db/migration.py -> /usr/lib/python2.7/site-packages/sm_api/db
+creating /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy
+copying build/lib/sm_api/db/sqlalchemy/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy
+copying build/lib/sm_api/db/sqlalchemy/api.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy
+copying build/lib/sm_api/db/sqlalchemy/migration.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy
+copying build/lib/sm_api/db/sqlalchemy/models.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy
+creating /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo
+copying build/lib/sm_api/db/sqlalchemy/migrate_repo/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo
+copying build/lib/sm_api/db/sqlalchemy/migrate_repo/manage.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo
+creating /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/versions
+copying build/lib/sm_api/db/sqlalchemy/migrate_repo/versions/001_init.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/versions
+copying build/lib/sm_api/db/sqlalchemy/migrate_repo/versions/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/versions
+creating /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/base.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_node.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_sda.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_sdm.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_service.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_servicegroup.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/smo_sgm.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+copying build/lib/sm_api/objects/utils.py -> /usr/lib/python2.7/site-packages/sm_api/objects
+creating /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/acl.py -> /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/api.py -> /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/app.py -> /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/config.py -> /usr/lib/python2.7/site-packages/sm_api/api
+copying build/lib/sm_api/api/hooks.py -> /usr/lib/python2.7/site-packages/sm_api/api
+creating /usr/lib/python2.7/site-packages/sm_api/api/controllers
+copying build/lib/sm_api/api/controllers/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers
+copying build/lib/sm_api/api/controllers/root.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers
+creating /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/base.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/collection.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/link.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/nodes.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/service_groups.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/servicenode.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/services.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/sm_sda.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/smc_api.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+copying build/lib/sm_api/api/controllers/v1/utils.py -> /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1
+creating /usr/lib/python2.7/site-packages/sm_api/api/middleware
+copying build/lib/sm_api/api/middleware/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/api/middleware
+copying build/lib/sm_api/api/middleware/auth_token.py -> /usr/lib/python2.7/site-packages/sm_api/api/middleware
+copying build/lib/sm_api/api/middleware/parsable_error.py -> /usr/lib/python2.7/site-packages/sm_api/api/middleware
+creating /usr/lib/python2.7/site-packages/sm_api/cmd
+copying build/lib/sm_api/cmd/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/cmd
+copying build/lib/sm_api/cmd/api.py -> /usr/lib/python2.7/site-packages/sm_api/cmd
+creating /usr/lib/python2.7/site-packages/sm_api/openstack
+copying build/lib/sm_api/openstack/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/cliutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/context.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/eventlet_backdoor.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/excutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/fileutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/gettextutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/importutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/jsonutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/local.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/lockutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/log.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/log_handler.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/loopingcall.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/network_utils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/periodic_task.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/policy.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/processutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/service.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/setup.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/strutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/threadgroup.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/timeutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/uuidutils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+copying build/lib/sm_api/openstack/common/version.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/db
+copying build/lib/sm_api/openstack/common/db/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db
+copying build/lib/sm_api/openstack/common/db/api.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db
+copying build/lib/sm_api/openstack/common/db/exception.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy
+copying build/lib/sm_api/openstack/common/db/sqlalchemy/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy
+copying build/lib/sm_api/openstack/common/db/sqlalchemy/models.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy
+copying build/lib/sm_api/openstack/common/db/sqlalchemy/session.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy
+copying build/lib/sm_api/openstack/common/db/sqlalchemy/utils.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap
+copying build/lib/sm_api/openstack/common/rootwrap/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap
+copying build/lib/sm_api/openstack/common/rootwrap/cmd.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap
+copying build/lib/sm_api/openstack/common/rootwrap/filters.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap
+copying build/lib/sm_api/openstack/common/rootwrap/wrapper.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/amqp.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/common.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/dispatcher.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/impl_fake.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/impl_kombu.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/impl_qpid.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/impl_zmq.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/matchmaker.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/matchmaker_redis.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/matchmaker_ring.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/proxy.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/serializer.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/service.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+copying build/lib/sm_api/openstack/common/rpc/zmq_receiver.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/api.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/log_notifier.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/no_op_notifier.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/rpc_notifier.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/rpc_notifier2.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+copying build/lib/sm_api/openstack/common/notifier/test_notifier.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/config
+copying build/lib/sm_api/openstack/common/config/generator.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/config
+creating /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture
+copying build/lib/sm_api/openstack/common/fixture/__init__.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture
+copying build/lib/sm_api/openstack/common/fixture/mockpatch.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture
+copying build/lib/sm_api/openstack/common/fixture/moxstubout.py -> /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/config.py to config.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/context.py to context.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/exception.py to exception.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/log.py to log.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/policy.py to policy.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/safe_utils.py to safe_utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/service.py to service.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/common/utils.py to utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/migration.py to migration.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migration.py to migration.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/models.py to models.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/manage.py to manage.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/versions/001_init.py to 001_init.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/db/sqlalchemy/migrate_repo/versions/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/base.py to base.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_node.py to smo_node.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_sda.py to smo_sda.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_sdm.py to smo_sdm.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_service.py to smo_service.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_servicegroup.py to smo_servicegroup.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/smo_sgm.py to smo_sgm.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/objects/utils.py to utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/acl.py to acl.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/app.py to app.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/config.py to config.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/hooks.py to hooks.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/root.py to root.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/base.py to base.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/collection.py to collection.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/link.py to link.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/nodes.py to nodes.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/service_groups.py to service_groups.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/servicenode.py to servicenode.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/services.py to services.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/sm_sda.py to sm_sda.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/smc_api.py to smc_api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/controllers/v1/utils.py to utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/middleware/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/middleware/auth_token.py to auth_token.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/api/middleware/parsable_error.py to parsable_error.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/cmd/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/cmd/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/cliutils.py to cliutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/context.py to context.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/eventlet_backdoor.py to eventlet_backdoor.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/excutils.py to excutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/fileutils.py to fileutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/gettextutils.py to gettextutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/importutils.py to importutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/jsonutils.py to jsonutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/local.py to local.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/lockutils.py to lockutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/log.py to log.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/log_handler.py to log_handler.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/loopingcall.py to loopingcall.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/network_utils.py to network_utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/periodic_task.py to periodic_task.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/policy.py to policy.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/processutils.py to processutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/service.py to service.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/setup.py to setup.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/strutils.py to strutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/threadgroup.py to threadgroup.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/timeutils.py to timeutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/uuidutils.py to uuidutils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/version.py to version.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/exception.py to exception.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy/models.py to models.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy/session.py to session.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/db/sqlalchemy/utils.py to utils.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap/cmd.py to cmd.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap/filters.py to filters.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rootwrap/wrapper.py to wrapper.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/amqp.py to amqp.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/common.py to common.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/dispatcher.py to dispatcher.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/impl_fake.py to impl_fake.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/impl_kombu.py to impl_kombu.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/impl_qpid.py to impl_qpid.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/impl_zmq.py to impl_zmq.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/matchmaker.py to matchmaker.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/matchmaker_redis.py to matchmaker_redis.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/matchmaker_ring.py to matchmaker_ring.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/proxy.py to proxy.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/serializer.py to serializer.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/service.py to service.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/rpc/zmq_receiver.py to zmq_receiver.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/api.py to api.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/log_notifier.py to log_notifier.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/no_op_notifier.py to no_op_notifier.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/rpc_notifier.py to rpc_notifier.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/rpc_notifier2.py to rpc_notifier2.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/notifier/test_notifier.py to test_notifier.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/config/generator.py to generator.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture/__init__.py to __init__.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture/mockpatch.py to mockpatch.pyc
+byte-compiling /usr/lib/python2.7/site-packages/sm_api/openstack/common/fixture/moxstubout.py to moxstubout.pyc
+running install_egg_info
+running egg_info
+creating sm_api.egg-info
+writing sm_api.egg-info/PKG-INFO
+writing top-level names to sm_api.egg-info/top_level.txt
+writing dependency_links to sm_api.egg-info/dependency_links.txt
+writing entry points to sm_api.egg-info/entry_points.txt
+writing manifest file 'sm_api.egg-info/SOURCES.txt'
+reading manifest file 'sm_api.egg-info/SOURCES.txt'
+writing manifest file 'sm_api.egg-info/SOURCES.txt'
+Copying sm_api.egg-info to /usr/lib/python2.7/site-packages/sm_api-1.0.0-py2.7.egg-info
+running install_scripts
+Installing sm-api script to /usr/bin
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:293  sudo install -m 755 scripts/sm-api /etc/init.d
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:295  sudo install -m 644 -D scripts/sm-api.service /etc/systemd/system
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:296  sudo install -m 644 -D scripts/sm_api.ini /etc/sm
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:297  sudo install -m 644 scripts/sm-api.conf /etc/pmon.d
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:298  sudo install -m 644 -D etc/sm-api/policy.json /etc/sm-api
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_api:300  popd
+~/devstack/ha/devstack
+```
