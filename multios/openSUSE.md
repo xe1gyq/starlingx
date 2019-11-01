@@ -83,4 +83,60 @@ running build_py
 package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
 ```
 
-## Installation
+## Install
+
+### install_sm_common
+
+```sh
++build.sh:main:42                          install_sm_common
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:339  pushd /opt/stack/devstack/ha/service-mgmt/sm-common
+~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:341  install_sm_common_libs
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:310  pushd /opt/stack/devstack/ha/service-mgmt/sm-common
+~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:312  build_sm_common
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_common:71  pushd /opt/stack/devstack/ha/service-mgmt/sm-common
+~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_common:76  make VER=1.0.0 VER_MJR=1 'CCFLAGS=-fPIC -g -Wall -Werror' 'INCLUDES=-I/usr/lib64/glib-2.0/include -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include' build
+make[1]: Entering directory '/opt/stack/devstack/ha/service-mgmt/sm-common/src'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory '/opt/stack/devstack/ha/service-mgmt/sm-common/src'
++opt/stack/devstack/ha/devstack/lib/ha:build_sm_common:82  popd
+~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:329  sudo install -d /usr/local/lib64
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:330  sudo install src/libsm_common.so.1.0.0 /usr/local/lib64
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:331  sudo cp -P src/libsm_common.so src/libsm_common.so.1 /usr/local/lib64
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:332  sudo install -d /usr/local/include
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:333  sudo install -m 644 src/sm_debug.h src/sm_debug_thread.h src/sm_eru_db.h src/sm_eru_process.h src/sm_hw.h src/sm_limits.h src/sm_list.h src/sm_netlink.h src/sm_node_stats.h src/sm_node_utils.h src/sm_selobj.h src/sm_sha512.h src/sm_thread_health.h src/sm_time.h src/sm_timer.h src/sm_trap.h src/sm_trap_thread.h src/sm_types.h src/sm_utils.h src/sm_util_types.h src/sm_uuid.h src/sm_watchdog_module.h src/sm_watchdog_nfs.h src/sm_watchdog_process.h /usr/local/include
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common_libs:335  popd
+~/devstack/ha/service-mgmt/sm-common ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:343  sudo install -m 0755 -p -D -t /var/lib/sm/watchdog/modules src/libsm_watchdog_nfs.so.1.0.0
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:344  sudo cp -P src/libsm_watchdog_nfs.so src/libsm_watchdog_nfs.so.1 /var/lib/sm/watchdog/modules
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:347  cd scripts
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:347  sudo make DEST_DIR= UNIT_DIR=/etc/systemd/system install
+install -d /etc/systemd/system
+install -m 644 *.service /etc/systemd/system 
+install -d /etc/init.d
+install sm-watchdog sm-eru /etc/init.d
+install -d /etc/pmon.d
+install *.conf /etc/pmon.d
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:349  sudo install -m 750 -p -D src/sm_eru /usr/local/bin/sm-eru
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:350  sudo install -m 750 -p -D src/sm_eru_dump /usr/local/bin/sm-eru-dump
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:351  sudo install -m 750 -p -D src/sm_watchdog /usr/local/bin/sm-watchdog
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:353  echo /usr/local/lib64
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:353  sudo tee /etc/ld.so.conf.d/stx-ha.conf
+/usr/local/lib64
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:354  sudo ldconfig
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_common:356  popd
+~/devstack/ha/devstack
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-eru
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-eru-dump 
+total-records: 0 (entry-size=288 bytes)
+total-records: 0 (entry-size=288 bytes)
+```
