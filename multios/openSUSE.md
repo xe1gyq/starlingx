@@ -15,7 +15,7 @@ LOGFILE=$DEST/logs/stack.sh.log
 HOST_IP=127.0.0.1
 ```
 
-## ha
+## Build ha
 
 ```sh
 stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
@@ -69,3 +69,18 @@ stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> make
 stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> sudo cp libfmcommon.so /usr/lib64/
 stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> cd -
 ```
+
+### Warning Package Init File
+
+> build_sm_api failing
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> bash build.sh 
+~/devstack/ha/service-mgmt-api/sm-api ~/devstack/ha/devstack
++ python setup.py build
+running build
+running build_py
+package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
+```
+
+## Installation
