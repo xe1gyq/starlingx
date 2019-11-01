@@ -238,15 +238,53 @@ stack@linux-0ibz:~/devstack/ha/devstack> echo $?
 ```
 
 ```sh
-function install_sm_client {
-    #setup_install $STX_HA_DIR/service-mgmt-client/sm-client
-    $STX_SUDO install -m 755 ${GITDIR[$STX_HA_NAME]}/service-mgmt-client/sm-client/usr/bin/smc $STX_BIN_DIR
-}
+stack@linux-0ibz:~/devstack/ha/devstack> vi lib/ha 
+```
+
+```sh
+ function install_sm_client {
+    pushd $STX_HA_DIR/service-mgmt-client/sm-client
+
+    sudo python setup.py install \
+        --root=/ \
+        --install-lib=$PYTHON_SITE_DIR \
+        --prefix=/usr \
+        --install-data=/usr/share
+
+    popd
+
+     $STX_SUDO install -m 755 ${GITDIR[$STX_HA_NAME]}/service-mgmt-client/sm-client/usr/bin/smc $STX_BIN_DIR
+ }
 ```
 
 ```sh
 +build.sh:main:45                          install_sm_client
-+opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:305  sudo install -m 755 /opt/stack/devstack/ha/service-mgmt-client/sm-client/usr/bin/smc /usr/local/bin
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:304  pushd /opt/stack/devstack/ha/service-mgmt-client/sm-client
+~/devstack/ha/service-mgmt-client/sm-client ~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:306  sudo python setup.py install --root=/ --install-lib=/usr/lib/python2.7/site-packages --prefix=/usr --install-data=/usr/share
+running install
+running build
+running build_py
+package init file 'sm_client/openstack/common/config/__init__.py' not found (or not a regular file)
+running install_lib
+running install_egg_info
+running egg_info
+writing sm_client.egg-info/PKG-INFO
+writing top-level names to sm_client.egg-info/top_level.txt
+writing dependency_links to sm_client.egg-info/dependency_links.txt
+reading manifest file 'sm_client.egg-info/SOURCES.txt'
+writing manifest file 'sm_client.egg-info/SOURCES.txt'
+removing '/usr/lib/python2.7/site-packages/sm_client-1.0.0-py2.7.egg-info' (and everything under it)
+Copying sm_client.egg-info to /usr/lib/python2.7/site-packages/sm_client-1.0.0-py2.7.egg-info
+running install_scripts
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:312  popd
+~/devstack/ha/devstack
++opt/stack/devstack/ha/devstack/lib/ha:install_sm_client:314  sudo install -m 755 /opt/stack/devstack/ha/service-mgmt-client/sm-client/usr/bin/smc /usr/local/bin
+```
+
+```sh
+stack@linux-0ibz:~/devstack> smc --smc-url=127.0.0.1:7777 servicenode-list
+Unsupported scheme: 
 ```
 
 ### install_sm_tools
