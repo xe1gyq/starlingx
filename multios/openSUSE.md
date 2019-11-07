@@ -690,7 +690,6 @@ Installing sm-api script to /usr/bin
 
 > Tbd
 
-
 ## Run
 
 ### Common
@@ -750,7 +749,7 @@ root     13632  0.0  0.0 113960  5088 pts/0    Tl   Nov01   0:00 sm-eru
 stack    25348  0.0  0.0   8688   948 pts/0    S+   12:35   0:00 grep --color=auto sm-eru
 stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru status
 ```
-
+ 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> cat /var/run/sm-eru.pid
 13632
@@ -903,6 +902,7 @@ oam-ip                           initial              initial              none
 management-ip                    initial              initial              none       
 ```
 
+ToInform: /var/run will dissapear when rebooted, see [here](https://en.opensuse.org/openSUSE:Systemd_packaging_guidelines#Creating_files_and_subdirectories_in_.2Fvar.2Frun_and_.2Frun), changes to be place [here](https://review.opendev.org/#/c/692625)
 
 ## sm
 
