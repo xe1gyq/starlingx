@@ -689,3 +689,39 @@ Installing sm-api script to /usr/bin
 ## Configure configure_ha
 
 > Tbd
+
+
+## Run
+
+From StarlingX CentOS
+
+```sh
+[sysadmin@controller-0 ~(keystone_admin)]$ sm-eru
+Failed to open scheduler log file (/var/log/sm-scheduler.log).
+Failed to start debug thread, error=FAILED.
+Debug initialization failed, error=FAILED.
+[sysadmin@controller-0 ~(keystone_admin)]$ ps -aux | grep sm-eru
+root      106661  0.1  0.0 112624  2084 ?        Sl   03:06   0:53 /usr/bin/sm-eru
+sysadmin 1395040  0.0  0.0 112712   984 pts/0    S+   11:25   0:00 grep --color=auto sm-eru
+[sysadmin@controller-0 ~(keystone_admin)]$ sudo /etc/init.d/sm-eru status
+sm-eru is running
+```
+
+```sh
+[sysadmin@controller-0 ~(keystone_admin)]$ sm-watchdog 
+Failed to open scheduler log file (/var/log/sm-scheduler.log).
+Failed to start debug thread, error=FAILED.
+Debug initialization failed, error=FAILED.
+[sysadmin@controller-0 ~(keystone_admin)]$ ps -aux | grep sm-watchdog
+root      106283  0.9  0.0 114692  2204 ?        Sl   03:06   4:49 /usr/bin/sm-watchdog
+sysadmin 1395762  0.0  0.0 112712   988 pts/0    S+   11:25   0:00 grep --color=auto sm-watchdog
+[sysadmin@controller-0 ~(keystone_admin)]$ sudo /etc/init.d/sm-watchdog status
+sm-watchdog is running
+```
+
+```sh
+[sysadmin@controller-0 ~(keystone_admin)]$ sm-eru-dump 
+    ...
+    106223. 2019-11-07T11:27:49.614 tc-stats: eno2 sfq 40: bytes: 121647734646 packets: 90652767 qlen: 0 backlog: 0 drops: 0 requeues: 0 overlimits: 0
+total-records: 106224 (entry-size=288 bytes)
+```
