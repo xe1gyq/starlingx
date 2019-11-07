@@ -695,6 +695,8 @@ Installing sm-api script to /usr/bin
 
 ### sm-common
 
+#### sm-common :: sm-eru
+
 From StarlingX CentOS
 
 ```sh
@@ -709,6 +711,21 @@ sysadmin 1395040  0.0  0.0 112712   984 pts/0    S+   11:25   0:00 grep --color=
 sm-eru is running
 ```
 
+From StarlingX openSUSE
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-eru
+stack@linux-0ibz:~/devstack/ha/devstack> ps -aux | grep sm-eru
+root     13631  0.0  0.0 129784  8892 pts/0    T    Nov01   0:00 sudo sm-eru
+root     13632  0.0  0.0 113960  5088 pts/0    Tl   Nov01   0:00 sm-eru
+stack    25348  0.0  0.0   8688   948 pts/0    S+   12:35   0:00 grep --color=auto sm-eru
+stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru status
+```
+
+#### sm-common :: sm-watchdog
+
+From StarlingX CentOS
+
 ```sh
 [sysadmin@controller-0 ~(keystone_admin)]$ sm-watchdog 
 Failed to open scheduler log file (/var/log/sm-scheduler.log).
@@ -721,11 +738,32 @@ sysadmin 1395762  0.0  0.0 112712   988 pts/0    S+   11:25   0:00 grep --color=
 sm-watchdog is running
 ```
 
+From StarlingX openSUSE
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-watchdog
+^C
+stack@linux-0ibz:~/devstack/ha/devstack> ps -aux | grep sm-watchdog
+stack    25731  0.0  0.0   8688   828 pts/0    S+   12:40   0:00 grep --color=auto sm-watchdog
+```
+
+#### sm-common :: sm-eru-dump
+
+From StarlingX CentOS
+
 ```sh
 [sysadmin@controller-0 ~(keystone_admin)]$ sm-eru-dump 
     ...
     106223. 2019-11-07T11:27:49.614 tc-stats: eno2 sfq 40: bytes: 121647734646 packets: 90652767 qlen: 0 backlog: 0 drops: 0 requeues: 0 overlimits: 0
 total-records: 106224 (entry-size=288 bytes)
+```
+
+From StarlingX openSUSE
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-eru-dump
+total-records: 0 (entry-size=288 bytes)
+total-records: 0 (entry-size=288 bytes)
 ```
 
 ## sm-db
@@ -746,4 +784,15 @@ oam-services                     active               active
 oam-ip                           enabled-active       enabled-active                  
 management-ip                    enabled-active       enabled-active                  
 ...
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sm-dump
+
+-Service_Groups------------------------------------------------------------------------
+oam-services                     initial              initial                        
+
+-Services------------------------------------------------------------------------------
+oam-ip                           initial              initial              none       
+management-ip                    initial              initial              none       
 ```
