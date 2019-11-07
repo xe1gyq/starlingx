@@ -736,7 +736,7 @@ sysadmin 1395040  0.0  0.0 112712   984 pts/0    S+   11:25   0:00 grep --color=
 sm-eru is running
 ```
 
-From StarlingX openSUSE
+From StarlingX openSUSE [Error]
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-eru
@@ -745,6 +745,34 @@ root     13631  0.0  0.0 129784  8892 pts/0    T    Nov01   0:00 sudo sm-eru
 root     13632  0.0  0.0 113960  5088 pts/0    Tl   Nov01   0:00 sm-eru
 stack    25348  0.0  0.0   8688   948 pts/0    S+   12:35   0:00 grep --color=auto sm-eru
 stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru status
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> cat /var/run/sm-eru.pid
+13632
+stack@linux-0ibz:~/devstack/ha/devstack> ps -aux | grep 13632
+root     13632  0.0  0.0 113960  5088 pts/0    Tl   Nov01   0:00 sm-eru
+stack    27598  0.0  0.0   8688   828 pts/0    S+   13:04   0:00 grep --color=auto 13632
+```
+
+ToInform: where does /etc/init.d/functions goes?
+
+```sh
+#. /etc/init.d/functions
+```
+
+ToInform: sm-watchdog path is different, change in spec
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru status
++ logger '/usr/bin/sm-eru is missing'
+stack@linux-0ibz:~/devstack/ha/devstack> ls /usr/local/bin/sm-eru
+/usr/local/bin/sm-eru
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru start
+/etc/init.d/sm-eru: line 49: start-stop-daemon: command not found
 ```
 
 #### sm-common :: sm-watchdog
@@ -770,6 +798,26 @@ stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-watchdog
 ^C
 stack@linux-0ibz:~/devstack/ha/devstack> ps -aux | grep sm-watchdog
 stack    25731  0.0  0.0   8688   828 pts/0    S+   12:40   0:00 grep --color=auto sm-watchdog
+```
+
+ToInform: where does /etc/init.d/functions goes?
+
+```sh
+#. /etc/init.d/functions
+```
+
+ToInform: sm-watchdog path is different, change in spec
+
+```shstack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-watchdog status
++ logger '/usr/bin/sm-watchdog is missing'
+stack@linux-0ibz:~/devstack/ha/devstack> ls /usr/local/bin/sm-watchdog
+```
+
+ToInform: start-stop-daemon
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-watchdog start
+/etc/init.d/sm-watchdog: line 49: start-stop-daemon: command not found
 ```
 
 #### sm-common :: sm-eru-dump
