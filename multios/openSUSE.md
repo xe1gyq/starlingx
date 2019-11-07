@@ -693,6 +693,8 @@ Installing sm-api script to /usr/bin
 
 ## Run
 
+### sm-common
+
 From StarlingX CentOS
 
 ```sh
@@ -724,4 +726,24 @@ sm-watchdog is running
     ...
     106223. 2019-11-07T11:27:49.614 tc-stats: eno2 sfq 40: bytes: 121647734646 packets: 90652767 qlen: 0 backlog: 0 drops: 0 requeues: 0 overlimits: 0
 total-records: 106224 (entry-size=288 bytes)
+```
+
+## sm-db
+
+```sh
+[sysadmin@controller-0 ~(keystone_admin)]$ sm-dump
+
+-Service_Groups------------------------------------------------------------------------
+unable to open database file
+```
+
+```sh
+[sysadmin@controller-0 ~(keystone_admin)]$ sudo sm-dump
+-Service_Groups------------------------------------------------------------------------
+oam-services                     active               active                         
+...
+-Services------------------------------------------------------------------------------
+oam-ip                           enabled-active       enabled-active                  
+management-ip                    enabled-active       enabled-active                  
+...
 ```
