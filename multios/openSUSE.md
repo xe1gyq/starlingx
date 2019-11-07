@@ -693,6 +693,31 @@ Installing sm-api script to /usr/bin
 
 ## Run
 
+### Common
+
+```sh
+controller-0:~$ ls -al /var/run/sm*
+-rw-r--r-- 1 root root   7 nov  7 03:06 /var/run/sm-api.pid
+-r--r--r-- 1 root root   0 nov  7 03:06 /var/run/sm_boot_complete
+-rw-r--r-- 1 root root   7 nov  7 03:06 /var/run/sm-eru.pid
+-rw------- 1 root root   6 nov  7 02:57 /var/run/sm-notify.pid
+-rw-r--r-- 1 root root   7 nov  7 03:06 /var/run/sm.pid
+-rw-r--r-- 1 root root   7 nov  7 03:06 /var/run/sm-trap.pid
+-rw-r--r-- 1 root root   7 nov  7 03:06 /var/run/sm-watchdog.pid
+
+/var/run/sm:
+total 1220
+drwxr-xr-x  2 root root     180 nov  7 03:07 .
+drwxr-xr-x 63 root root    3480 nov  7 13:45 ..
+-rw-r--r--  1 root root      10 nov  7 03:06 .platform_cores
+-rw-r--r--  1 root root  120832 nov  7 13:45 sm.db
+-rw-r--r--  1 root root   32768 nov  7 03:06 sm.db-shm
+-rw-r--r--  1 root root 1048032 nov  7 13:45 sm.db-wal
+-rw-r--r--  1 root root    5120 nov  7 03:06 sm.hb.db
+-rw-r--r--  1 root root   32768 nov  7 03:07 sm.hb.db-shm
+-rw-r--r--  1 root root       0 nov  7 03:07 sm.hb.db-wal
+```
+
 ### sm-common
 
 #### sm-common :: sm-eru
@@ -738,7 +763,7 @@ sysadmin 1395762  0.0  0.0 112712   988 pts/0    S+   11:25   0:00 grep --color=
 sm-watchdog is running
 ```
 
-From StarlingX openSUSE
+From StarlingX openSUSE [Error]
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo sm-watchdog
@@ -768,6 +793,8 @@ total-records: 0 (entry-size=288 bytes)
 
 ## sm-db
 
+From StarlingX CentOS
+
 ```sh
 [sysadmin@controller-0 ~(keystone_admin)]$ sm-dump
 
@@ -786,6 +813,8 @@ management-ip                    enabled-active       enabled-active
 ...
 ```
 
+From StarlingX openSUSE
+
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sm-dump
 
@@ -795,4 +824,23 @@ oam-services                     initial              initial
 -Services------------------------------------------------------------------------------
 oam-ip                           initial              initial              none       
 management-ip                    initial              initial              none       
+```
+
+
+## sm
+
+From StarlingX CentOS
+
+```sh
+controller-0:~$ /etc/init.d/sm status
+sm is running
+```
+
+```sh
+controller-0:~$ ps -aux | grep sm
+root      106283  0.9  0.0 114692  2204 ?        Sl   03:06   6:08 /usr/bin/sm-watchdog
+root      106578  1.1  0.0 563472 13208 ?        S<l  03:06   7:28 /usr/bin/sm
+root      106599  0.0  0.0 184004  1788 ?        S<l  03:06   0:01 /usr/bin/sm
+root      106644  0.1  0.0 380824 66988 ?        S    03:06   0:54 /usr/bin/python2 /usr/bin/sm-api --config-file=/etc/sm-api/sm-api.conf --verbose --use-syslog --syslog-log-facility local1
+root      106661  0.1  0.0 112624  2084 ?        Sl   03:06   1:09 /usr/bin/sm-eru
 ```
