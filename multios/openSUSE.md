@@ -720,6 +720,10 @@ drwxr-xr-x 63 root root    3480 nov  7 13:45 ..
 
 ### sm-common
 
+General
+
+- ToDo: https://en.opensuse.org/openSUSE:Systemd_packaging_guidelines#Creating_files_and_subdirectories_in_.2Fvar.2Frun_and_.2Frun
+
 #### sm-common :: sm-eru
 
 From StarlingX CentOS
@@ -763,6 +767,8 @@ ToInform: where does /etc/init.d/functions goes?
 
 ToInform: sm-watchdog path is different, change in spec
 
+> - To search about ways to hanlde old sysinv into systemd
+
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru status
 + logger '/usr/bin/sm-eru is missing'
@@ -773,6 +779,29 @@ stack@linux-0ibz:~/devstack/ha/devstack> ls /usr/local/bin/sm-eru
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-eru start
 /etc/init.d/sm-eru: line 49: start-stop-daemon: command not found
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> zypper lr
+Repository priorities are without effect. All enabled repositories share the same priority.
+
+#  | Alias                     | Name                               | Enabled | GPG Check | Refresh
+---+---------------------------+------------------------------------+---------+-----------+--------
+ 1 | openSUSE-Leap-15.1-1      | openSUSE-Leap-15.1-1               | No      | ----      | ----   
+ 2 | repo-debug                | Debug Repository                   | No      | ----      | ----   
+ 3 | repo-debug-non-oss        | Debug Repository (Non-OSS)         | No      | ----      | ----   
+ 4 | repo-debug-update         | Update Repository (Debug)          | No      | ----      | ----   
+ 5 | repo-debug-update-non-oss | Update Repository (Debug, Non-OSS) | No      | ----      | ----   
+ 6 | repo-non-oss              | Non-OSS Repository                 | Yes     | (r ) Yes  | Yes    
+ 7 | repo-oss                  | Main Repository                    | Yes     | (r ) Yes  | Yes    
+ 8 | repo-source               | Source Repository                  | No      | ----      | ----   
+ 9 | repo-source-non-oss       | Source Repository (Non-OSS)        | No      | ----      | ----   
+10 | repo-update               | Main Update Repository             | Yes     | (r ) Yes  | Yes    
+11 | repo-update-non-oss       | Update Repository (Non-Oss)        | Yes     | (r ) Yes  | Yes    
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install sysvinit
 ```
 
 #### sm-common :: sm-watchdog
