@@ -77,6 +77,10 @@ See all documentation [here](https://wiki.akraino.org/display/AK/StarlingX+Far+E
 
 - Do we have a blueprint directory under source code?
 
+#### CI/CD
+
+- Where is CI/CD infrastucture coming from? [e.g. Eliot](https://gerrit.akraino.org/r/gitweb?p=eliot.git;a=commit;h=08061086d68d8c4f0a027c910c5e498b1016e12a)
+
 ### Release 2
 
 
