@@ -16,7 +16,7 @@
 
 > [Akraino StarlingX](https://wiki.akraino.org/download/attachments/6128319/Akraino-StarlingX-EdgeX.mp4?version=1&modificationDate=1553808128000&api=v2)
 
-### Elio
+### Eliot
 
 > Edge Lightweight and IOT (IOT Gataway and SD-WAN)
 
@@ -39,6 +39,13 @@ Source Code
 Blueprints
 
 - See Blueprint directory
+
+CI/CD
+
+1. https://gerrit.akraino.org/r/c/eliot/+/1951
+2. https://jenkins.akraino.org/job/eliot-master-verify/178/
+3. https://jenkins.akraino.org/job/eliot-master-verify/
+4. https://jenkins.akraino.org/view/starlingx/
 
 ### AI on the Edge
 
@@ -83,8 +90,16 @@ See all documentation [here](https://wiki.akraino.org/display/AK/StarlingX+Far+E
 - [Akraino Jenkins Master](https://jenkins.akraino.org/view/starlingx/job/starlingx-master-verify/)
 - [Akriani Gerrit CI Management](https://gerrit.akraino.org/r/admin/repos/ci-management)
 
+Flow
+
+1. https://gerrit.akraino.org/r/c/starlingx/+/992
+   - https://gerrit.akraino.org/r/q/project:starlingx
+2. https://jenkins.akraino.org/job/starlingx-master-verify/12/
+   - https://jenkins.akraino.org/view/starlingx/
+
 ### Release 2
 
+Tbd
 
 ### Questions
 
