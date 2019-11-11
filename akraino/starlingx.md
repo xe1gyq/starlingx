@@ -92,14 +92,26 @@ See all documentation [here](https://wiki.akraino.org/display/AK/StarlingX+Far+E
 
 Flow
 
-1. https://gerrit.akraino.org/r/c/starlingx/+/992
+1. Switch to another lab for StarlingX validation
+2. https://gerrit.akraino.org/r/c/starlingx/+/992
    - https://gerrit.akraino.org/r/q/project:starlingx
-2. https://jenkins.akraino.org/job/starlingx-master-verify/12/
+3. https://jenkins.akraino.org/job/starlingx-master-verify/12/
    - https://jenkins.akraino.org/view/starlingx/
+
+See also [Intital verify script of StarlingX for Akraino](https://gerrit.akraino.org/r/c/starlingx/+/943)
+
+Steps
+
+1. Request access to Jenkins Sandbox
+2. Use same StarlingX Gerrit repository
+3. 
 
 ### Release 2
 
-Tbd
+- Deliverables
+- Demo Features Shown
+- Source Code
+- CI/CD
 
 ### Questions
 
