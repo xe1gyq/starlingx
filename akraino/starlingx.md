@@ -80,6 +80,8 @@ See all documentation [here](https://wiki.akraino.org/display/AK/StarlingX+Far+E
 #### CI/CD
 
 - Where is CI/CD infrastucture coming from? [e.g. Eliot](https://gerrit.akraino.org/r/gitweb?p=eliot.git;a=commit;h=08061086d68d8c4f0a027c910c5e498b1016e12a)
+- [Akraino Jenkins Master](https://jenkins.akraino.org/view/starlingx/job/starlingx-master-verify/)
+- [Akriani Gerrit CI Management](https://gerrit.akraino.org/r/admin/repos/ci-management)
 
 ### Release 2
 
