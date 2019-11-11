@@ -904,6 +904,13 @@ management-ip                    initial              initial              none
 
 ToInform: /var/run will dissapear when rebooted, see [here](https://en.opensuse.org/openSUSE:Systemd_packaging_guidelines#Creating_files_and_subdirectories_in_.2Fvar.2Frun_and_.2Frun), changes to be place [here](https://review.opendev.org/#/c/692625)
 
+From [here](https://opendev.org/starlingx/ha/src/branch/master/service-mgmt-tools/sm-tools/sm_tools/sm_provision.py)
+
+```
+database_name = "/var/lib/sm/sm.db"
+runtime_db_name = "/var/run/sm/sm.db"
+```
+
 ## sm
 
 From StarlingX CentOS
