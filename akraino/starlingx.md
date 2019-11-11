@@ -2,7 +2,15 @@
 
 ## Demo
 
-- [StarlingX](https://wiki.akraino.org/download/attachments/6128319/Akraino-StarlingX-EdgeX.mp4?version=1&modificationDate=1553808128000&api=v2)
+> [Akraino StarlingX](https://wiki.akraino.org/download/attachments/6128319/Akraino-StarlingX-EdgeX.mp4?version=1&modificationDate=1553808128000&api=v2)
+
+Deliverables
+
+- Alarm and status aggregation at central site.
+- Automated software patch installation across all subclouds.
+- Automated synchronization of flavors and images fron central cloud to subclouds.
+- Deploying and running EdgeX in a subcloud.
+
 
 ## Blueprint
 
