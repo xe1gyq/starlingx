@@ -3,6 +3,8 @@
 - [Akraino Release 1](https://www.lfedge.org/projects/akraino/release-1/)
 - [Akraino Demo Edge Lightweight IoT (ELIOT) - IoT Gateway](https://www.lfedge.org/projects/akraino/release-1/edge-lightweight-iot-eliot-iot-gateway/)
   - [Eliot Source Code](https://gerrit.akraino.org/r/gitweb?p=eliot.git;a=shortlog)
+    - k8s master, kubelet, kubernetes-cni, kubeadm, docker, Eliot Manager, Edge Node, calico, calico rbac
+    -  kubeedge
 
 ## Demo
 
