@@ -36,6 +36,10 @@ Source Code
   - k8s master, kubelet, kubernetes-cni, kubeadm, docker, Eliot Manager, Edge Node, calico, calico rbac
   - kubeedge, nginx
 
+Blueprints
+
+- See Blueprint directory
+
 ### AI on the Edge
 
 - [AI on the Edge](https://wiki.akraino.org/display/AK/Presentation+Videos)
@@ -68,6 +72,10 @@ See all documentation [here](https://wiki.akraino.org/display/AK/StarlingX+Far+E
 - Automated software patch installation across all subclouds.
 - Automated synchronization of flavors and images fron central cloud to subclouds.
 - Deploying and running EdgeX in a subcloud.
+
+#### Source Code
+
+- Do we have a blueprint directory under source code?
 
 ### Release 2
 
