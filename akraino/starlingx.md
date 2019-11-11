@@ -102,9 +102,10 @@ See also [Intital verify script of StarlingX for Akraino](https://gerrit.akraino
 
 Steps
 
-1. Request access to Jenkins Sandbox
-2. Use same StarlingX Gerrit repository
-3. 
+1. Use same StarlingX Gerrit repository
+   - [Gerrit Guide](https://wiki.akraino.org/display/AK/Gerrit+Guide)
+2. Request access to Jenkins Sandbox
+   - [Jenkins Guide](https://wiki.akraino.org/display/AK/Jenkins+Guide)
 
 ### Release 2
 
