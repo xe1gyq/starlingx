@@ -95,6 +95,7 @@ Flow
 1. Switch to another lab for StarlingX validation
 2. https://gerrit.akraino.org/r/c/starlingx/+/992
    - https://gerrit.akraino.org/r/q/project:starlingx
+   - https://gerrit.akraino.org/r/gitweb?p=starlingx.git;a=tree
 3. https://jenkins.akraino.org/job/starlingx-master-verify/12/
    - https://jenkins.akraino.org/view/starlingx/
 
