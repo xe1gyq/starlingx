@@ -1,5 +1,9 @@
 # Akraino
 
+- [Akraino Release 1](https://www.lfedge.org/projects/akraino/release-1/)
+- [Akraino Demo Edge Lightweight IoT (ELIOT) - IoT Gateway](https://www.lfedge.org/projects/akraino/release-1/edge-lightweight-iot-eliot-iot-gateway/)
+  - [Eliot Source Code](https://gerrit.akraino.org/r/gitweb?p=eliot.git;a=shortlog)
+
 ## Demo
 
 > [Akraino StarlingX](https://wiki.akraino.org/download/attachments/6128319/Akraino-StarlingX-EdgeX.mp4?version=1&modificationDate=1553808128000&api=v2)
@@ -23,6 +27,8 @@ Deliverables
 - StarlingX Far Edge Distributed Cloud API Documentation
 - StarlingX Far Edge Distributed Cloud Architecture Documentation
 - StarlingX Far Edge Distributed Cloud Installation Guide
+  - [Here](https://wiki.akraino.org/display/AK/StarlingX+Far+Edge+Distributed+Cloud+Installation+Guide)
+  - Added Gerrit review link.
 - StarlingX Far Edge Distributed Cloud Release Notes (this document)
 - StarlingX Far Edge Distributed Cloud Test Documentation
 
