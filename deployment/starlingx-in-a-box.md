@@ -171,7 +171,7 @@ EdgeX services deleted successfully !
 
 2. Install EdgeX.
 
-> Below is the output to replace _stx-in-box-edgex-install.jpg_
+> Below is the text output to replace _stx-in-box-edgex-install.jpg_
 
 ```sh
 controller-0:~$ ./edgex-on-kubernetes-master/hack/edgex-up.sh
@@ -205,17 +205,34 @@ EdgeX deployments created successfully!
 
 3. Check the EdgeX deployment.
 
-> Below is the output to replace _stx-in-box-edgex-check.jpg_
+> Below is the text output to replace _stx-in-box-edgex-check.jpg_
 
 ```sh
-edgex-core-command-5f5c5fdf76-nrf2r               1/1     Running            2          2m49s
-edgex-core-consul-5878c69b76-cvvql                0/1     ErrImagePull       0          3m55s
-edgex-core-data-6cf777656-fstfg                   1/1     Running            2          3m1s
-edgex-core-metadata-cfc8b5cd7-2mvx7               1/1     Running            2          3m12s
-edgex-export-client-7dc8cd7d69-qt66q              1/1     Running            1          2m27s
-edgex-export-distro-6f59d74596-p2p7r              1/1     Running            0          2m16s
-edgex-mongo-7d66895d45-sfvds                      1/1     Running            0          3m45s
-edgex-support-logging-567998f4fc-5xwcw            0/1     CrashLoopBackOff   2          3m34s
-edgex-support-notifications-987746788-dwpp7       1/1     Running            2          3m23s
-edgex-support-scheduler-5588cb5899-2bprf          0/1     Error              1          2m38s
+controller-0:~$ kubectl get pods -n default | grep edgex
+edgex-core-command-5f5c5fdf76-nrf2r               1/1     Running            4          2m49s
+edgex-core-consul-5878c69b76-cvvql                1/1     Running            4          3m55s
+edgex-core-data-6cf777656-fstfg                   1/1     Running            4          3m1s
+edgex-core-metadata-cfc8b5cd7-2mvx7               1/1     Running            4          3m12s
+edgex-export-client-7dc8cd7d69-qt66q              1/1     Running            3          2m27s
+edgex-export-distro-6f59d74596-p2p7r              1/1     Running            3          2m16s
+edgex-mongo-7d66895d45-sfvds                      1/1     Running            4          3m45s
+edgex-support-logging-567998f4fc-5xwcw            1/1     Running            4          3m34s
+edgex-support-notifications-987746788-dwpp7       1/1     Running            4          3m23s
+edgex-support-scheduler-5588cb5899-2bprf          1/1     Running            3          2m38s
+```
+
+> This is what I really got, probaly due to my proxy settings
+
+```sh
+controller-0:~$ kubectl get pods -n default | grep edgex
+edgex-core-command-5f5c5fdf76-nrf2r               0/1     Error              4          6m43s
+edgex-core-consul-5878c69b76-cvvql                0/1     ImagePullBackOff   0          7m49s
+edgex-core-data-6cf777656-fstfg                   1/1     Running            4          6m55s
+edgex-core-metadata-cfc8b5cd7-2mvx7               0/1     CrashLoopBackOff   4          7m6s
+edgex-export-client-7dc8cd7d69-qt66q              1/1     Running            4          6m21s
+edgex-export-distro-6f59d74596-p2p7r              1/1     Running            2          6m10s
+edgex-mongo-7d66895d45-sfvds                      1/1     Running            0          7m39s
+edgex-support-logging-567998f4fc-5xwcw            0/1     CrashLoopBackOff   4          7m28s
+edgex-support-notifications-987746788-dwpp7       0/1     CrashLoopBackOff   4          7m17s
+edgex-support-scheduler-5588cb5899-2bprf          1/1     Running            4          6m32s
 ```
