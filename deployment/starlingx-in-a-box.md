@@ -133,3 +133,89 @@ MountVolume.SetUp failed for volume "default-token-tjzd5"
 Etc...
 ```
 
+### EdgeX Deployment
+
+1. Uninstall EdgeX.
+
+> Below is the text output to replace _stx-in-box-edgex-uninstall.jpg_
+
+```sh
+controller-0:~$ ./edgex-on-kubernetes-master/hack/edgex-down.sh 
+Deleting EdgeX deployments now!
+deployment.extensions "edgex-core-consul" deleted
+deployment.extensions "rulesengine" deleted
+deployment.extensions "edgex-export-distro" deleted
+deployment.extensions "edgex-export-client" deleted
+deployment.extensions "edgex-support-scheduler" deleted
+deployment.extensions "edgex-core-command" deleted
+deployment.extensions "edgex-core-data" deleted
+deployment.extensions "edgex-core-metadata" deleted
+deployment.extensions "edgex-support-notifications" deleted
+deployment.extensions "edgex-support-logging" deleted
+deployment.extensions "edgex-mongo" deleted
+EdgeX deployments created successfully!
+Deleting EdgeX services now!
+service "edgex-core-consul" deleted
+service "edgex-support-rulesengine" deleted
+service "edgex-export-distro" deleted
+service "edgex-export-client" deleted
+service "edgex-support-scheduler" deleted
+service "edgex-core-command" deleted
+service "edgex-core-data" deleted
+service "edgex-core-metadata" deleted
+service "edgex-support-notifications" deleted
+service "edgex-support-logging" deleted
+service "edgex-mongo" deleted
+EdgeX services deleted successfully !
+```
+
+2. Install EdgeX.
+
+> Below is the output to replace _stx-in-box-edgex-install.jpg_
+
+```sh
+controller-0:~$ ./edgex-on-kubernetes-master/hack/edgex-up.sh
+Creating EdgeX services now!
+service/edgex-core-consul created
+service/edgex-mongo created
+service/edgex-support-logging created
+service/edgex-support-notifications created
+service/edgex-core-metadata created
+service/edgex-core-data created
+service/edgex-core-command created
+service/edgex-support-scheduler created
+service/edgex-export-client created
+service/edgex-export-distro created
+service/edgex-support-rulesengine created
+EdgeX services created successfully !
+Creating EdgeX deployments now!
+deployment.extensions/edgex-core-consul created
+deployment.extensions/edgex-mongo created
+deployment.extensions/edgex-support-logging created
+deployment.extensions/edgex-support-notifications created
+deployment.extensions/edgex-core-metadata created
+deployment.extensions/edgex-core-data created
+deployment.extensions/edgex-core-command created
+deployment.extensions/edgex-support-scheduler created
+deployment.extensions/edgex-export-client created
+deployment.extensions/edgex-export-distro created
+deployment.extensions/rulesengine created
+EdgeX deployments created successfully!
+```
+
+3. Check the EdgeX deployment.
+
+> Below is the output to replace _stx-in-box-edgex-check.jpg_
+
+```sh
+edgex-core-command-5f5c5fdf76-nrf2r               1/1     Running            2          2m49s
+edgex-core-consul-5878c69b76-cvvql                0/1     ErrImagePull       0          3m55s
+edgex-core-data-6cf777656-fstfg                   1/1     Running            2          3m1s
+edgex-core-metadata-cfc8b5cd7-2mvx7               1/1     Running            2          3m12s
+edgex-export-client-7dc8cd7d69-qt66q              1/1     Running            1          2m27s
+edgex-export-distro-6f59d74596-p2p7r              1/1     Running            0          2m16s
+edgex-mongo-7d66895d45-sfvds                      1/1     Running            0          3m45s
+edgex-support-logging-567998f4fc-5xwcw            0/1     CrashLoopBackOff   2          3m34s
+edgex-support-notifications-987746788-dwpp7       1/1     Running            2          3m23s
+edgex-support-scheduler-5588cb5899-2bprf          0/1     Error              1          2m38s
+```
