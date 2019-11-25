@@ -33,14 +33,14 @@ HOST_IP=127.0.0.1
 user@linux-0ibz:~/devstack> bash stack.sh
 ```
 
-## Build DevStack
+### Build DevStack
 
 ```sh
 stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
 stack@linux-0ibz:~/devstack> cd ha/devstack/
 ```
 
-### Build DevStack 00
+#### Build DevStack 00
 
 > Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
 
@@ -48,7 +48,7 @@ stack@linux-0ibz:~/devstack> cd ha/devstack/
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
 
-### Build DevStack 01
+#### Build DevStack 01
 
 > StarlingX metal and fault
 
@@ -67,7 +67,7 @@ stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> cd -
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
 ```
 
-### Build DevStack 02
+#### Build DevStack 02
 
 > LDFLAGS
 
@@ -103,7 +103,7 @@ index 171c292..c11e881 100644
 +LDFLAGS = -rdynamic -I/opt/stack/devstack/ha/service-mgmt/sm-db/src/ -I/opt/stack/devstack/ha/devstack/metal/mtce/src/heartbeat/
 ```
 
-### Warning Package Init File
+#### Warning Package Init File
 
 > build_sm_api failing
 
@@ -116,9 +116,9 @@ running build_py
 package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
 ```
 
-## Install
+### Install
 
-### Install DevStack 00
+#### Install DevStack 00
 
 > Missing _functions_ file for all systemd files
 
@@ -126,7 +126,7 @@ package init file 'sm_api/openstack/common/config/__init__.py' not found (or not
 #. /etc/init.d/functions
 ```
 
-### install_sm_common
+#### install_sm_common
 
 ```sh
 +build.sh:main:42                          install_sm_common
@@ -193,7 +193,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> echo $?
 
 > __Learning__ ldconfig - configure dynamic linker run-time bindings
 
-### install_sm_db
+#### install_sm_db
 
 ```sh
 +build.sh:main:43                          install_sm_db
@@ -226,7 +226,7 @@ install -m 644 sm-patch.sql /var/lib/sm/patches
 ~/devstack/ha/devstack
 ```
 
-#### Install DevStack 01
+##### Install DevStack 01
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
@@ -256,7 +256,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> sm-dump
 -Services------------------------------------------------------------------------------
 ```
 
-### install_sm
+#### install_sm
 
 ```sh
 +build.sh:main:44                          install_sm
@@ -294,7 +294,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> echo $?
 5
 ```
 
-### install_sm_client
+#### install_sm_client
 
 ```sh
 +build.sh:main:45                          install_sm_client
@@ -352,7 +352,7 @@ stack@linux-0ibz:~/devstack> smc --smc-url=127.0.0.1:7777 servicenode-list
 Unsupported scheme: 
 ```
 
-### install_sm_tools
+#### install_sm_tools
 
 ```sh
 +build.sh:main:46                          install_sm_tools
@@ -419,7 +419,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> sm-dump
 /var/run/sm/sm.db not available.
 ```
 
-### install_sm_api
+#### install_sm_api
 
 ```sh
 +build.sh:main:47                          install_sm_api
@@ -717,17 +717,17 @@ Installing sm-api script to /usr/bin
 ~/devstack/ha/devstack
 ```
 
-## Init init_ha
+### Init init_ha
 
 > Tbd
 
-## Configure configure_ha
+### Configure configure_ha
 
 > Tbd
 
-## Run
+### Run
 
-### Common
+#### Common
 
 ```sh
 controller-0:~$ ls -al /var/run/sm*
@@ -752,13 +752,13 @@ drwxr-xr-x 63 root root    3480 nov  7 13:45 ..
 -rw-r--r--  1 root root       0 nov  7 03:07 sm.hb.db-wal
 ```
 
-### sm-common
+#### sm-common
 
 General
 
 - ToDo: https://en.opensuse.org/openSUSE:Systemd_packaging_guidelines#Creating_files_and_subdirectories_in_.2Fvar.2Frun_and_.2Frun
 
-#### sm-common :: sm-eru
+##### sm-common :: sm-eru
 
 From StarlingX CentOS
 
@@ -838,7 +838,7 @@ Repository priorities are without effect. All enabled repositories share the sam
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install sysvinit
 ```
 
-#### sm-common :: sm-watchdog
+##### sm-common :: sm-watchdog
 
 From StarlingX CentOS
 
@@ -883,7 +883,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> sudo /etc/init.d/sm-watchdog start
 /etc/init.d/sm-watchdog: line 49: start-stop-daemon: command not found
 ```
 
-#### sm-common :: sm-eru-dump
+##### sm-common :: sm-eru-dump
 
 From StarlingX CentOS
 
@@ -902,7 +902,7 @@ total-records: 0 (entry-size=288 bytes)
 total-records: 0 (entry-size=288 bytes)
 ```
 
-## sm-db
+### sm-db
 
 From StarlingX CentOS
 
@@ -946,7 +946,7 @@ database_name = "/var/lib/sm/sm.db"
 runtime_db_name = "/var/run/sm/sm.db"
 ```
 
-## sm
+### sm
 
 From StarlingX CentOS
 
