@@ -228,6 +228,8 @@ install -m 644 sm-patch.sql /var/lib/sm/patches
 
 ##### Install DevStack 01
 
+> var/run is mounted as tmpfs and will disappear at the next reboot: https://en.opensuse.org/openSUSE:Systemd_packaging_guidelines#Creating_files_and_subdirectories_in_.2Fvar.2Frun_and_.2Frun
+
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
 /var/run/sm/sm.db not available.
