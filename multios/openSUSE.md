@@ -4,11 +4,11 @@
 - [Build DevStack 01](#build-devstack-01)
 - [Build DevStack 02](#build-devstack-02)
 
-## Links
+Some Links
 
 - [Option 01](https://github.com/lorin/devstack-vm/blob/master/devstack.yml)
 
-## DevStack Installation
+## DevStack
 
 ```sh
 user@linux-0ibz:~> git clone https://github.com/openstack/devstack.git
@@ -32,14 +32,14 @@ HOST_IP=127.0.0.1
 user@linux-0ibz:~/devstack> bash stack.sh
 ```
 
-## Build
+## Build DevStack
 
 ```sh
 stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
 stack@linux-0ibz:~/devstack> cd ha/devstack/
 ```
 
-## Build DevStack 00
+### Build DevStack 00
 
 > Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
 
@@ -47,16 +47,26 @@ stack@linux-0ibz:~/devstack> cd ha/devstack/
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
 
-## Build DevStack 01
+### Build DevStack 01
 
 > StarlingX metal and fault
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/metal
+```
+
+```sh
+stack@linux-0ibz:~/devstack/ha/devstack> cd fault/fm-common/sources/
+stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> make
+stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> sudo cp libfmcommon.so /usr/lib64/
+stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> cd -
+```
+
+```sh
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
 ```
 
-## Build DevStack 02
+### Build DevStack 02
 
 > LDFLAGS
 
@@ -92,13 +102,6 @@ index 171c292..c11e881 100644
 +LDFLAGS = -rdynamic -I/opt/stack/devstack/ha/service-mgmt/sm-db/src/ -I/opt/stack/devstack/ha/devstack/metal/mtce/src/heartbeat/
 ```
 
-```sh
-stack@linux-0ibz:~/devstack/ha/devstack> cd fault/fm-common/sources/
-stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> make
-stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> sudo cp libfmcommon.so /usr/lib64/
-stack@linux-0ibz:~/devstack/ha/devstack/fault/fm-common/sources> cd -
-```
-
 ### Warning Package Init File
 
 > build_sm_api failing
@@ -112,7 +115,9 @@ running build_py
 package init file 'sm_api/openstack/common/config/__init__.py' not found (or not a regular file)
 ```
 
-## Install install_ha
+## Install
+
+### Install DevStack 00
 
 Missing for all systemd files:
 
