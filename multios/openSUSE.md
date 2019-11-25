@@ -5,6 +5,11 @@
 ## DevStack Installation
 
 ```sh
+user@linux-0ibz:~> git clone https://github.com/openstack/devstack.git
+user@linux-0ibz:~> cd devstack/
+```
+
+```sh
 stack@linux-0ibz:~/devstack> vi local.conf 
 [[local|localrc]]
 ADMIN_PASSWORD=user
@@ -15,6 +20,10 @@ SERVICE_TOKEN=user
 FLAT_INTERFACE=br100
 LOGFILE=$DEST/logs/stack.sh.log
 HOST_IP=127.0.0.1
+```
+
+```sh
+user@linux-0ibz:~/devstack> bash stack.sh
 ```
 
 ## Build
