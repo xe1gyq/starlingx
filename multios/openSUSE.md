@@ -1,8 +1,8 @@
 # openSUSE
 
-- [Build DevStack 01](#build-devstack-0)
-- [Build DevStack 02](#build-devstack-1)
-- [Build DevStack 03](#build-devstack-2)
+- [Build DevStack 00](#build-devstack-00)
+- [Build DevStack 01](#build-devstack-01)
+- [Build DevStack 02](#build-devstack-02)
 
 ## Links
 
@@ -39,7 +39,7 @@ stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
 stack@linux-0ibz:~/devstack> cd ha/devstack/
 ```
 
-## Build DevStack 0
+## Build DevStack 00
 
 > Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
 
@@ -47,7 +47,7 @@ stack@linux-0ibz:~/devstack> cd ha/devstack/
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
 
-## Build DevStack 1
+## Build DevStack 01
 
 > StarlingX metal and fault
 
@@ -56,7 +56,7 @@ stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
 ```
 
-## Build DevStack 2
+## Build DevStack 02
 
 > LDFLAGS
 
