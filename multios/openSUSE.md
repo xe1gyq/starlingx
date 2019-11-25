@@ -1,6 +1,8 @@
 # openSUSE
 
 - [Build DevStack 01](#build-devstack-01)
+- [Build DevStack 02](#build-devstack-02)
+- [Build DevStack 03](#build-devstack-03)
 
 ## Links
 
