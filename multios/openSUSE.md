@@ -33,9 +33,13 @@ stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
 stack@linux-0ibz:~/devstack> cd ha/devstack/
 ```
 
+Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
+
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
+
+Dependency: StarlingX metal and fault
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/metal
