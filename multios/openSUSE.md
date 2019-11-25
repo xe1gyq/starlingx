@@ -120,7 +120,7 @@ package init file 'sm_api/openstack/common/config/__init__.py' not found (or not
 
 ### Install DevStack 00
 
-Missing for all systemd files:
+> Missing _functions_ file for all systemd files
 
 ```
 #. /etc/init.d/functions
@@ -225,6 +225,8 @@ install -m 644 sm-patch.sql /var/lib/sm/patches
 +opt/stack/devstack/ha/devstack/lib/ha:install_sm_db:387  popd
 ~/devstack/ha/devstack
 ```
+
+#### Install DevStack 01
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sm-dump 
