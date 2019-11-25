@@ -1,5 +1,9 @@
 # openSUSE
 
+- [Build DevStack 01](build-devstack-01)
+
+## Links
+
 - [Option 01](https://github.com/lorin/devstack-vm/blob/master/devstack.yml)
 
 ## DevStack Installation
@@ -33,18 +37,26 @@ stack@linux-0ibz:~/devstack> git clone https://opendev.org/starlingx/ha.git
 stack@linux-0ibz:~/devstack> cd ha/devstack/
 ```
 
-Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
+## Build DevStack 01
+
+> Gerrit Review: [openSUSE: System Packages Devstack based](https://review.opendev.org/#/c/691905/)
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> sudo zypper install glib2-devel libuuid-devel sqlite3-devel libjson-c-devel
 ```
 
-Dependency: StarlingX metal and fault
+## Build DevStack 02
+
+> StarlingX metal and fault
 
 ```sh
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/metal
 stack@linux-0ibz:~/devstack/ha/devstack> git clone https://opendev.org/starlingx/fault
 ```
+
+## Build DevStack 03
+
+> LDFLAGS
 
 Compilation failed:
 
